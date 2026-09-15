@@ -1,101 +1,231 @@
 * {
     box-sizing: border-box;
- }
-  
- body {
-    font-family: sans-serif;
- }
-  
- .flex-container-column {
-    display: flex;
-    /* properti pendukung */
-    flex-direction: column;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: right;
- }
-  
- .flex-container-row {
-    display: flex;
- }
-  
- .button {
-    flex-basis: 25%;
-    /* properti pendukung */
-    font-size: 1.5em;
-    text-align: center;
-    padding: 40px;
-    border: 1px solid black;
-    background: -webkit-linear-gradient(top, #d2d2d2, #ddd);
-    cursor: pointer;
- }
-  
- .double {
-    flex-basis: 50%;
- }
-  
- .display {
-    color: white;
-    width: 100%;
-    padding: 10px 20px;
-    background-color: #333333;
-    border: 1px solid black;
-    font-size: 2em;
- }
-  
- .operator,
- .negative,
- .equals {
-    background: orange;
- }
-  
- .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    padding: 30px;
-    margin-top: 20px;
- }
-  
- .button:hover {
-    font-weight: bold;
- }
+}
 
- 
- /*Menerpakan styling pada tabel riwat*/
- .history {
-   width: 80%;
-   margin: 30px auto 0 auto;
-   overflow: scroll;
+:root {
+    --bg: #0f172a;
+    --panel: #111827;
+    --display: #020617;
+    --button: #1e293b;
+    --button-hover: #334155;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --accent: #6366f1;
+    --accent-hover: #818cf8;
+    --danger: #ef4444;
+    --border: rgba(148, 163, 184, 0.14);
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 20px 60px;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(circle at top left, rgba(99, 102, 241, 0.20), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.14), transparent 28%),
+        var(--bg);
+}
+
+.flex-container-column {
+    display: flex;
+    flex-direction: column;
+    width: min(100%, 430px);
+    margin: 0 auto;
+    padding: 18px;
+    text-align: right;
+    background: rgba(17, 24, 39, 0.88);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(18px);
+}
+
+.flex-container-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.display {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    min-height: 130px;
+    width: 100%;
+    padding: 22px;
+    overflow: hidden;
+    color: var(--text);
+    background: linear-gradient(145deg, #020617, #0b1120);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+}
+
+.display h1 {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    font-size: clamp(2.5rem, 9vw, 4rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.06em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.button {
+    flex: 1 1 25%;
+    min-height: 64px;
+    display: grid;
+    place-items: center;
+    padding: 12px;
+    color: #e2e8f0;
+    background: var(--button);
+    border: 1px solid rgba(148, 163, 184, 0.10);
+    border-radius: 16px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.button:hover {
+    background: var(--button-hover);
+    transform: translateY(-2px);
+}
+
+.button:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.operator,
+.negative {
+    color: white;
+    background: rgba(99, 102, 241, 0.78);
+}
+
+.operator:hover,
+.negative:hover {
+    background: var(--accent-hover);
+}
+
+.equals {
+    flex-basis: 50%;
+    color: white;
+    background: linear-gradient(135deg, var(--accent), #4f46e5);
+    box-shadow: 0 10px 24px rgba(79, 70, 229, 0.25);
+}
+
+.equals:hover {
+    background: linear-gradient(135deg, var(--accent-hover), #6366f1);
+}
+
+.clear {
+    color: #fecaca;
+    background: rgba(239, 68, 68, 0.14);
+}
+
+.clear:hover {
+    background: rgba(239, 68, 68, 0.24);
+}
+
+.history {
+    width: min(100%, 760px);
+    margin: 28px auto 0;
+    padding: 24px;
+    overflow-x: auto;
+    background: rgba(17, 24, 39, 0.88);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(18px);
+}
+
+.history h2 {
+    margin: 0 0 18px;
+    color: var(--text);
+    font-size: 1.15rem;
+    font-weight: 700;
 }
 
 table {
-   border-collapse: collapse;
-   border-spacing: 0;
-   width: 100%;
-   border : 1px solid #ddd;
+    width: 100%;
+    min-width: 600px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 14px;
 }
 
-th, 
+th,
 td {
-   text-align: center;
-   padding: 16px;
+    padding: 14px 16px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
 }
 
 th {
-   background-color: orange;
-   color: white;
+    color: #c7d2fe;
+    background: rgba(99, 102, 241, 0.18);
+    font-size: 0.85rem;
+    font-weight: 700;
 }
 
-tr:nth-child(even) {
-   background-color: #d2d2d2;
+td {
+    color: #cbd5e1;
+    background: rgba(15, 23, 42, 0.55);
 }
 
- /* menetapkan nilai padding yang pas ketika di akses pada mobile device */
- @media screen and (max-width : 513px) {
-     .button {
-         padding: 10px;
-     }
-     .history {
-        width: 100%;
-     }
- }
+tr:last-child td {
+    border-bottom: 0;
+}
+
+tr:nth-child(even) td {
+    background: rgba(30, 41, 59, 0.45);
+}
+
+@media screen and (max-width: 513px) {
+    body {
+        padding: 20px 12px 40px;
+    }
+
+    .flex-container-column {
+        padding: 12px;
+        border-radius: 20px;
+    }
+
+    .display {
+        min-height: 115px;
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    .display h1 {
+        font-size: 2.7rem;
+    }
+
+    .flex-container-row {
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .button {
+        min-height: 58px;
+        border-radius: 14px;
+        font-size: 1rem;
+    }
+
+    .history {
+        padding: 18px;
+        border-radius: 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .button {
+        transition: none;
+    }
+}
